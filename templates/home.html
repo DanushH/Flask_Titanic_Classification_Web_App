@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<form action="/predict" method="POST">
+    <fieldset>
+        <label for="ticket_class">Ticket Class</label>
+        <select id="ticket_class" name="ticket_class">
+            <option value="" disabled selected>Select Ticket Class</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <label for="age">Age (Years)</label>
+        <input type="range" id="age" name="age" min="0" max="80" step="1" value="0">
+        <div class="slider-value" id="age-value">0</div>
+
+        <label for="fare">Fare</label>
+        <input type="range" id="fare" name="fare" min="0" max="513" step="1" value="0">
+        <div class="slider-value" id="fare-value">0</div>
+
+        <label for="gender">Gender</label>
+        <select id="gender" name="gender">
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="embarkation">Embarkation</label>
+        <select id="embarkation" name="embarkation">
+            <option value="" disabled selected>Select Embarked Port</option>
+            <option value="Cherbourg">Cherbourg</option>
+            <option value="Queenstown">Queenstown</option>
+            <option value="Southampton">Southampton</option>
+        </select>
+
+        <label for="relatives">Number of relatives on board</label>
+        <input type="range" id="relatives" name="relatives" min="0" max="10" step="1" value="0">
+        <div class="slider-value" id="relatives-value">0</div>
+
+        <button type="submit">Predict Survival</button>
+    </fieldset>
+</form>
+
+<script>
+    const ageSlider = document.getElementById('age');
+    const ageValue = document.getElementById('age-value');
+    ageSlider.oninput = () => {
+        ageValue.textContent = ageSlider.value;
+    };
+
+    const fareSlider = document.getElementById('fare');
+    const fareValue = document.getElementById('fare-value');
+    fareSlider.oninput = () => {
+        fareValue.textContent = fareSlider.value;
+    };
+
+    const relativesSlider = document.getElementById('relatives');
+    const relativesValue = document.getElementById('relatives-value');
+    relativesSlider.oninput = () => {
+        relativesValue.textContent = relativesSlider.value;
+    };
+</script>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="table-container">
+    <div class="table-responsive">
+        <table class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th>Ticket Class</th>
+                    <th>Age (Years)</th>
+                    <th>Fare</th>
+                    <th>Gender</th>
+                    <th>Embarkation</th>
+                    <th>Family Count</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.ticket_class }}</td>
+                    <td>{{ row.age }}</td>
+                    <td>{{ row.fare }}</td>
+                    <td>{{ row.gender }}</td>
+                    <td>{{ row.embarkation }}</td>
+                    <td>{{ row.relatives }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

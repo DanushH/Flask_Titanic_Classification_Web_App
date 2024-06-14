@@ -1,3 +1,8 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e4dfdf;
+}
+
 .navbar {
     margin-bottom: 2%;
     overflow: hidden;
@@ -25,17 +30,29 @@ form {
     margin-bottom: 10%;
 }
 
-h1 {
-    text-align: center;
+#predict_fieldset {
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin: 20px auto;
+}
+
+h2 {
+    color: #333;
 }
 
 h1,
+h2,
 h3 {
+    text-align: center;
     margin-bottom: 5%;
 }
 
 ul {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .table-container {

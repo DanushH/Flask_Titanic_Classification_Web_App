@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<fieldset>
+<fieldset id="predict_fieldset">
     <ul>
         <li>Ticket class: {{ data[0] }}</li>
         <li>Age: {{ data[1] }}</li>
@@ -11,6 +11,8 @@
         <li>Embarkation: {{ data[4] }}</li>
         <li>Number of relatives on board: {{ data[5] }}</li>
     </ul>
+
+    <h2>Prediction: {{ survived_status }}</h2>
 </fieldset>
 
 {% endblock %}

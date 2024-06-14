@@ -1,7 +1,13 @@
 import sqlite3
+import pickle
+import numpy as np
 from flask import Flask, render_template, request
 
+
 app = Flask(__name__)
+
+with open("titanic_model.pkl", "rb") as f:
+    model = pickle.load(f)
 
 
 @app.route("/")
@@ -11,7 +17,6 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    # SAMPLE OUTPUT
     ticket_class = request.form["ticket_class"]
     age = request.form["age"]
     fare = request.form["fare"]
@@ -19,11 +24,20 @@ def predict():
     embarkation = request.form["embarkation"]
     relatives = request.form["relatives"]
 
+    sex_male = 1 if gender == "Male" else 0
+    embarked_q = 1 if embarkation == "Queenstown" else 0
+    embarked_s = 1 if embarkation == "Southampton" else 0
+
+    features = np.array(
+        [[ticket_class, age, fare, sex_male, embarked_q, embarked_s, relatives]]
+    )
+
     data = [ticket_class, age, fare, gender, embarkation, relatives]
 
-    # MODIFY TO ADD MODEL PREDICTION LOGIC HERE
+    survived = model.predict(features)[0]
+    survived_status = "Survived" if survived == 1 else "Not Survived"
 
-    return render_template("predict.html", data=data)
+    return render_template("predict.html", data=data, survived_status=survived_status)
 
 
 @app.route("/dataset")
